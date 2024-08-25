@@ -1,7 +1,7 @@
 <?php
+namespace Tests\Feature\Http\Controllers\Admin;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Spatie\Permission\Models\Permission;
 use Tests\TestCase;
 

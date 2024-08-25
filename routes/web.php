@@ -7,7 +7,7 @@ Route::get('/', function () {
 });
 
 Route::prefix('admin')
-    ->middleware(['auth', 'permission:view admin dashboard'])
+    ->middleware(['auth', 'permission:super admin'])
     ->name('admin.')
     ->group(static function () {
         Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home.index');
