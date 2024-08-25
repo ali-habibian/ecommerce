@@ -1,5 +1,7 @@
 @extends('layouts.auth')
 
+@section('title', 'ورود - دیجی ارومیه')
+
 @section('content')
     <section class="">
         <div class="d-flex flex-wrap align-items-center">
@@ -81,7 +83,7 @@
 
 
                     <div class="text-center mt-5 text-small">
-                        Copyright {{ date('Y') }} Ali Habibian. All rights reserved.
+                        Copyright &copy; Ali Habibian {{ date('Y') }}
                     </div>
                 </div>
             </div>

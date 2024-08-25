@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
           name="viewport">
-    <title>ورود - دیجی ارومیه</title>
+    <title>@yield('title')</title>
 
     <link rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
