@@ -16,7 +16,11 @@
 
                     <div class="card-body">
                         <p class="text-muted">ما لینکی برای بازیابی رمز عبور شما ارسال خواهیم کرد</p>
-                        <form method="POST">
+                        <form method="POST"
+                              action="{{ route('password.request') }}"
+                              class="needs-validation"
+                              novalidate="">
+                            @csrf
                             <div class="form-group">
                                 <label for="email">ایمیل</label>
                                 <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
