@@ -14,5 +14,10 @@
         "laravel-vite-plugin": "^1.0",
         "pusher-js": "^8.0.1",
         "vite": "^5.0"
+    },
+    "dependencies": {
+        "@popperjs/core": "^2.11.8",
+        "bootstrap": "^5.3.3",
+        "sass": "^1.77.8"
     }
 }
