@@ -9,7 +9,7 @@
                 <div class="p-4 m-3 mt-md-5 py-md-5">
                     <h4 class="text-dark font-weight-normal">به <span class="fw-bold">دیجی ارومیه</span> خوش آمدید</h4>
                     <p class="text-muted">
-                        قبل از شروع، باید وارد شوید، یا اگر قبلاً حساب کاربری ندارید، ثبت نام کنید.
+                        قبل از شروع، باید وارد شوید، یا اگر حساب کاربری ندارید، ثبت نام کنید.
                     </p>
 
                     <form method="POST"
@@ -77,7 +77,7 @@
                         </div>
 
                         <div class="mt-5 text-center">
-                            حساب کاربری ندارید؟ <a href="{{ route('register') }}">ایجاد حساب کاربری جدید</a>
+                            حساب کاربری ندارید؟ <a href="{{ route('register') }}">ثبت نام</a>
                         </div>
                     </form>
 
