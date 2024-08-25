@@ -6,8 +6,11 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "flixtechs-labs/stimulus-extra": "^0.0.5",
         "laravel/framework": "^11.9",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "tonysm/stimulus-laravel": "^1.1",
+        "tonysm/turbo-laravel": "^2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
