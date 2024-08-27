@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\RedirectResponse;
 
 class RoleController extends Controller
 {
@@ -15,7 +16,7 @@ class RoleController extends Controller
      */
     public function index(): Renderable
     {
-        $roles = Role::paginate();
+        $roles = Role::paginate(10);
 
         return view('admin.roles.index', [
             'roles' => $roles,
@@ -32,10 +33,17 @@ class RoleController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param StoreRoleRequest $request
+     * @return RedirectResponse
      */
-    public function store(StoreRoleRequest $request)
+    public function store(StoreRoleRequest $request): RedirectResponse
     {
-        //
+        Role::create($request->validated());
+
+        return redirect()
+            ->route('admin.roles.index')
+            ->with('success', 'نقش جدید با موفقیت ایجاد شد.');
     }
 
     /**

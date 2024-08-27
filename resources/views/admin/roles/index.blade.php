@@ -51,7 +51,7 @@
                                                 </a>
                                             </td>
 
-                                            <td>{{ $role->guard }}</td>
+                                            <td>{{ $role->guard_name }}</td>
                                             <td>{{ $role->created_at->diffForHumans() }}</td>
                                         </tr>
                                     @endforeach

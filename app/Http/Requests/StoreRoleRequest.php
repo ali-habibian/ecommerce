@@ -11,18 +11,19 @@ class StoreRoleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return $this->user()->can('create roles');
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, mixed>
      */
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|unique:roles,name',
+            'guard' => 'sometimes|nullable|string',
         ];
     }
 }
