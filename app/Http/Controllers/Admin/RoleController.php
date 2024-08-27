@@ -25,9 +25,9 @@ class RoleController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): Renderable
     {
-        //
+        return view('admin.roles.create');
     }
 
     /**
