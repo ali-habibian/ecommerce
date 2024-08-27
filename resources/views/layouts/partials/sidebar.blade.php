@@ -14,10 +14,16 @@
                     <i class="fas fa-fire"></i> <span>داشبورد</span>
                 </a>
             </li>
-            <li class="menu-header">کاربران</li>
             <li class="nav-item @if (Route::is('admin.users.*')) active @endif">
                 <a href="{{ route('admin.users.index') }}" class="nav-link">
-                    <i class="fas fa-users"></i> <span>کاربران</span>
+                    <i class="fas fa-users"></i> <span>مدیریت کاربران</span>
+                </a>
+            </li>
+            <li class="nav-item @if (Route::is('admin.roles.*')) active @endif">
+                <a href="{{ route('admin.roles.index') }}"
+                   class="nav-link"
+                   data-toggle="dropdown">
+                    <i class="fas fa-lock"></i> <span>مدیریت نقش ها</span>
                 </a>
             </li>
         </ul>
