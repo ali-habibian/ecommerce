@@ -8,6 +8,7 @@ use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -57,17 +58,30 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Role $role)
+    public function edit(Role $role): Renderable
     {
-        //
+        $permissions = Permission::all();
+
+        return view('admin.roles.edit', [
+            'role' => $role,
+            'permissions' => $permissions,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param UpdateRoleRequest $request
+     * @param Role $role
+     * @return RedirectResponse
      */
-    public function update(UpdateRoleRequest $request, Role $role)
+    public function update(UpdateRoleRequest $request, Role $role): RedirectResponse
     {
-        //
+        $role->update($request->validated());
+
+        return redirect()
+            ->route('admin.roles.index')
+            ->with('success', 'نقش با موفقیت ویرایش شد.');
     }
 
     /**

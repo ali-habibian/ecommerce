@@ -40,6 +40,7 @@
                                         <th>اسم</th>
                                         <th>گارد</th>
                                         <th>ایجاد شده در</th>
+                                        <th>عملیات</th>
                                     </tr>
 
                                     @foreach ($roles as $role)
@@ -53,6 +54,8 @@
 
                                             <td>{{ $role->guard_name }}</td>
                                             <td>{{ $role->created_at->diffForHumans() }}</td>
+                                            <td><a class="btn btn-primary"
+                                                   href="{{ route('admin.roles.edit', $role) }}">ویرایش</a></td>
                                         </tr>
                                     @endforeach
 
