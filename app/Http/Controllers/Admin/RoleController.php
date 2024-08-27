@@ -86,9 +86,21 @@ class RoleController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param Role $role
+     * @return RedirectResponse
      */
-    public function destroy(Role $role)
+    public function destroy(Role $role): RedirectResponse
     {
-        //
+        if ($role->name === 'super admin'){
+            return redirect()
+                ->route('admin.roles.index')
+                ->with('error', 'نقش سوپر ادمین را نمی توانید حذف کنید.');
+        }
+        $role->delete();
+
+        return redirect()
+            ->route('admin.roles.index')
+            ->with('success', 'نقش با موفقیت حذف شد.');
     }
 }
