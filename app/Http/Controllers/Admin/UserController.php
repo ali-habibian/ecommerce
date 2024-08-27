@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\Fortify\CreateNewUser;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\RedirectResponse;
 
 class UserController extends Controller
 {
@@ -41,9 +43,17 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request, CreateNewUser $action): RedirectResponse
     {
-        //
+        $action->create([
+            ...$request->validated(),
+            'terms' => 'on',
+            'password_confirmation' => $request->password_confirmation,
+        ]);
+
+        return redirect()
+            ->route('admin.users.index')
+            ->with('success', 'کاربر با موفقیت ایجاد شد.');
     }
 
     /**

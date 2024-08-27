@@ -53,12 +53,12 @@
                                                 <div class="table-links"
                                                      data-controller="obliterate"
                                                      data-obliterate-trash-value="1">
-                                                    <a href="{{ route('admin.users.edit', $user) }}">ویرایش</a>
+                                                    <a class="btn btn-primary text-light" href="{{ route('admin.users.edit', $user) }}">ویرایش</a>
                                                     <div class="bullet"></div>
                                                     @if ($user->id !== auth()->user()->id)
                                                         <a data-action="click->obliterate#handle"
                                                            href="javascrpit:void(0)"
-                                                           class="btn btn-link text-danger">حذف</a>
+                                                           class="btn btn-danger text-light">حذف</a>
                                                         <form
                                                             method="POST"
                                                             action="{{ route('admin.users.destroy', $user) }}">
