@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Actions\Fortify\CreateNewUser;
+use App\Actions\Fortify\UpdateUserProfileInformation;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
@@ -75,9 +76,13 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user, UpdateUserProfileInformation $action): RedirectResponse
     {
-        //
+        $action->update($user, $request->validated());
+
+        return redirect()
+            ->route('admin.users.index')
+            ->with('success', 'کاربر با موفقیت ویرایش شد.');
     }
 
     /**
