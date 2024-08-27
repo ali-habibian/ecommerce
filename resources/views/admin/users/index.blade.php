@@ -5,7 +5,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>:کاربران</h1>
+            <h1 class="p-2">کاربران: </h1>
             <div class="section-header-button">
                 <a href="{{ route('admin.users.create') }}"
                    class="btn btn-primary">ایجاد کاربر جدید</a>
@@ -42,12 +42,12 @@
                                             <td>
                                                 <a href="#">
                                                     <img alt="image"
-                                                         src="https://res.cloudinary.com/dwinzyahj/image/upload/v1609855422/rqyxywrhl5vis0dnaenc.png"
+                                                         src="{{ asset('assets/images/user-icon.png') }}"
                                                          class="rounded-circle"
                                                          width="35"
                                                          data-toggle="title"
                                                          title="">
-                                                    <div class="d-inline-block ml-2">{{ $user->name }}</div>
+                                                    <div class="d-inline-block p-2">{{ $user->name }}</div>
                                                 </a>
 
                                                 <div class="table-links"
