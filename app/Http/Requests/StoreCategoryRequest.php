@@ -11,18 +11,20 @@ class StoreCategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return $this->user()->can('create category');
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, mixed>
      */
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|unique:categories|max:255',
+            'description' => 'nullable|string',
+            'parent_id' => 'sometimes|nullable|integer|exists:categories,id',
         ];
     }
 }

@@ -3,11 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    /**
+     * Constructor for the class.
+     *
+     * This function is called when an instance of the class is created.
+     * It authorizes the resource for the current user.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->authorizeResource(Category::class, 'category');
@@ -28,15 +37,21 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+
+        return view('admin.categories.create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        //
+        Category::create($request->validated());
+
+        return redirect()
+            ->route('admin.categories.index')
+            ->with('success', 'دسته بندی با موفقیت ایجاد شد.');
     }
 
     /**
