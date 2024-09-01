@@ -4,5 +4,9 @@
 
 import { Stimulus } from '../libs/stimulus'
 
+
 import HelloController from './hello_controller'
 Stimulus.register('hello', HelloController)
+
+import ObliterateController from './obliterate_controller'
+Stimulus.register('obliterate', ObliterateController)
