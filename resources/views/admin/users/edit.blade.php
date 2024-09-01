@@ -77,5 +77,57 @@
                 </div>
             </div>
         </div>
+
+        <div class="border"></div>
+        <div class="section-body">
+            <h2 class="section-title">نقش ها</h2>
+            <p class="section-lead">
+                اختصاص نقش به این کاربر
+            </p>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-7 ms-auto">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Roles</h4>
+                            </div>
+                            <div class="card-body">
+                                <form action="{{ route('admin.users.roles.assign', $user) }}"
+                                      method="POST">
+                                    @csrf
+
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            نقش ها
+                                        </label>
+
+                                        <div class="selectgroup selectgroup-pills">
+                                            @foreach ($roles as $role)
+                                                <label class="selectgroup-item mb-3">
+                                                    <input type="checkbox"
+                                                           name="roles[{{ $role->name }}]"
+                                                           value="{{ $role->name }}"
+                                                           class="selectgroup-input"
+                                                        {{ $user->hasRole($role) || collect(old('roles',[]))->has($role->name) ? 'checked' : '' }}>
+
+                                                    <span class="selectgroup-button">{{ $role->name }}</span>
+                                                </label>
+                                            @endforeach
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="submit"
+                                                class="btn btn-primary">ذخیره تغییرات</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </section>
 @endsection

@@ -103,6 +103,4 @@ class RoleController extends Controller
             ->route('admin.roles.index')
             ->with('success', 'نقش با موفقیت حذف شد.');
     }
-
-    // Test Commit
 }

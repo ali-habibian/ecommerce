@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
@@ -70,7 +72,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
+        $permissions = Permission::all();
+        $roles = Role::all();
+        return view('admin.users.edit', compact('user', 'roles', 'permissions'));
     }
 
     /**
