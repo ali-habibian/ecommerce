@@ -33,10 +33,12 @@
 
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="parent_id">دسته بندی والد</label>
+                                    <label for="parent_id">دسته بندی والد (اختیاری)</label>
                                     <select id="parent_id"
                                             class="form-select custom-control custom-select @error('parent_id') is-invalid @enderror"
                                             name="parent_id">
+                                        <option selected
+                                                value=''>انتخاب کنید ...</option>
                                         @foreach ($categories as $category)
                                             @if ($category->id === 0)
                                                 <option selected
