@@ -14,6 +14,12 @@
                     <i class="fas fa-fire"></i> <span>داشبورد</span>
                 </a>
             </li>
+            <li class="nav-item @if (Route::is('admin.categories.*')) active @endif">
+                <a href="{{ route('admin.categories.index') }}"
+                   class="nav-link">
+                    <i class="fas fa-folder"></i> <span>مدیریت دسته بندی ها</span>
+                </a>
+            </li>
             <li class="nav-item @if (Route::is('admin.users.*')) active @endif">
                 <a href="{{ route('admin.users.index') }}" class="nav-link">
                     <i class="fas fa-users"></i> <span>مدیریت کاربران</span>
