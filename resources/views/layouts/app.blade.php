@@ -24,6 +24,7 @@
 <body>
 <div id="app">
     <div class="main-wrapper">
+        @include('layouts.partials.flash')
         <div class="navbar-bg"></div>
 
         @include('layouts.partials.navbar')

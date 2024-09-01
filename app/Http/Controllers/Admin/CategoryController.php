@@ -68,6 +68,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return to_route('admin.categories.index')->with('success', 'دسته بندی با موفقیت حذف شد.');
     }
 }

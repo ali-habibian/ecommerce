@@ -5,6 +5,9 @@
 import { Stimulus } from '../libs/stimulus'
 
 
+import FlashController from './flash_controller'
+Stimulus.register('flash', FlashController)
+
 import HelloController from './hello_controller'
 Stimulus.register('hello', HelloController)
 
