@@ -14,7 +14,6 @@ export default class extends Controller {
     connect() {
         if (this.successValue) {
             iziToast.success({
-                title: 'با موفقیت انجام شد',
                 message: this.successValue,
                 position: 'topLeft',
             });
@@ -22,7 +21,6 @@ export default class extends Controller {
 
         if (this.errorValue) {
             iziToast.error({
-                title: 'خطا',
                 message: this.errorValue,
                 position: 'topLeft',
             })
