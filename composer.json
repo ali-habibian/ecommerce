@@ -8,6 +8,7 @@
         "php": "^8.2",
         "flixtechs-labs/laravel-authorizer": "^0.1.0",
         "flixtechs-labs/stimulus-extra": "^0.0.5",
+        "kasraghoreyshi/persian-faker": "^1.04",
         "laravel/fortify": "^1.24",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
