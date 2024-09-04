@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Http\Requests\StoreBrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
+use Illuminate\Http\Request;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class BrandController extends Controller
 {
@@ -20,9 +23,14 @@ class BrandController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $brands = QueryBuilder::for(Brand::class)
+            ->allowedFilters([AllowedFilter::scope('search', 'whereScout')])
+            ->paginate()
+            ->appends($request->query());
+
+        return view('admin.brands.index', compact('brands'));
     }
 
     /**

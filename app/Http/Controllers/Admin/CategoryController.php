@@ -29,13 +29,13 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $categories = QueryBuilder::for(Category::class)
             ->allowedFilters([AllowedFilter::scope('search', 'whereScout')])
             ->with('parent')
             ->paginate(10)
-            ->appends(\request()->query());
+            ->appends($request->query());
 
         return view('admin.categories.index', compact('categories'));
     }

@@ -20,6 +20,12 @@
                     <i class="fas fa-folder"></i> <span>مدیریت دسته بندی ها</span>
                 </a>
             </li>
+            <li class="nav-item @if (Route::is('admin.brands.*')) active @endif">
+                <a href="{{ route('admin.brands.index') }}"
+                   class="nav-link">
+                    <i class="fas fa-hashtag"></i> <span>مدیریت برند ها</span>
+                </a>
+            </li>
             <li class="nav-item @if (Route::is('admin.users.*')) active @endif">
                 <a href="{{ route('admin.users.index') }}" class="nav-link">
                     <i class="fas fa-users"></i> <span>مدیریت کاربران</span>
