@@ -88,6 +88,8 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+
+        return to_route('admin.brands.index')->with('success', 'برند با موفقیت حذف شد.');
     }
 }
