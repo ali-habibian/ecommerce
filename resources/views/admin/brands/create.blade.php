@@ -47,7 +47,7 @@
                                           rows="8"
                                           class="form-control">{{ old('description') }}</textarea>
 
-                                <span class="invalid-feedback" id="name-error"></span>
+                                <span class="invalid-feedback" id="description-error"></span>
                             </div>
 
                             <div class="form-group text-right">
