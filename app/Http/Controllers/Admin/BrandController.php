@@ -30,7 +30,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.brands.create');
     }
 
     /**
@@ -38,7 +38,11 @@ class BrandController extends Controller
      */
     public function store(StoreBrandRequest $request)
     {
-        //
+        Brand::create($request->validated());
+
+        return response()->json([
+            'success' => 'برند با موفقیت ایجاد شد.',
+        ]);
     }
 
     /**

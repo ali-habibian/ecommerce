@@ -19,7 +19,6 @@ export function submitAjaxForm(url, method, formData, redirectUrl = null) {
             Swal.fire({
                 title: success,
                 icon: 'success',
-                onAfterClose: () => Swal.hideLoading()
             }).then(() => {
                 if (redirectUrl) {
                     location.replace(redirectUrl);
