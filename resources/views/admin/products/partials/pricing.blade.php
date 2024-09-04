@@ -31,7 +31,8 @@
                 ريال
             </div>
 
-            <input form="storeProduct"
+            <input
+{{--                form="storeProduct"--}}
                    type="text"
                    name="discounted_price"
                    id='discounted_price'
@@ -53,7 +54,8 @@
             ريال
         </div>
 
-        <input form="storeProduct"
+        <input
+{{--            form="storeProduct"--}}
                type="text"
                name="cost"
                id='cost'

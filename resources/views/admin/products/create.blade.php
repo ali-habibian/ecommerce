@@ -41,41 +41,41 @@
                                 <h4>تصویر</h4>
                             </div>
                             <div class="card-body">
-{{--                                <form id="storeImage" action="{{ route('admin.products.store') }}"--}}
-{{--                                      method="post">--}}
-{{--                                    @csrf--}}
-                                    <div class="form-group"
-                                         data-controller="filepond"
-                                         data-filepond-process-value="{{ route('admin.images.store') }}"
-                                         data-filepond-restore-value="{{ route('admin.images.show') }}"
-                                         data-filepond-revert-value="{{ route('admin.images.destroy') }}"
-                                         data-filepond-current-value="{{ json_encode(old('images', [])) }}">
+                                {{--                                <form id="storeImage" action="{{ route('admin.products.store') }}"--}}
+                                {{--                                      method="post">--}}
+                                {{--                                    @csrf--}}
+                                <div class="form-group"
+                                     data-controller="filepond"
+                                     data-filepond-process-value="{{ route('admin.images.store') }}"
+                                     data-filepond-restore-value="{{ route('admin.images.show') }}"
+                                     data-filepond-revert-value="{{ route('admin.images.destroy') }}"
+                                     data-filepond-current-value="{{ json_encode(old('images', [])) }}">
 
-                                        <input type="file" id="image"
-                                               data-filepond-target="input">
-                                        <span class="invalid-feedback" id="image-error"></span>
+                                    <input type="file" id="image"
+                                           data-filepond-target="input">
+                                    <span class="invalid-feedback" id="image-error"></span>
 
-                                        @foreach (old('images', []) as $image)
-                                            <input data-filepond-target="upload"
-                                                   type="hidden"
-                                                   name="images[]"
-{{--                                                   form="storeProduct"--}}
-                                                   value="{{ $image }}">
-                                        @endforeach
+                                    @foreach (old('images', []) as $image)
+                                        <input data-filepond-target="upload"
+                                               type="hidden"
+                                               name="images[]"
+                                               {{--                                                   form="storeProduct"--}}
+                                               value="{{ $image }}">
+                                    @endforeach
 
-                                        <template data-filepond-target="template">
-                                            <input data-filepond-target="upload"
-                                                   type="hidden"
-                                                   name="NAME"
-{{--                                                   form="storeProduct"--}}
-                                                   value="VALUE">
-                                        </template>
+                                    <template data-filepond-target="template">
+                                        <input data-filepond-target="upload"
+                                               type="hidden"
+                                               name="NAME"
+                                               {{--                                                   form="storeProduct"--}}
+                                               value="VALUE">
+                                    </template>
 
-{{--                                        <input type="submit"--}}
-{{--                                               hidden--}}
-{{--                                               form="storeImage">--}}
-                                    </div>
-{{--                                </form>--}}
+                                    {{--                                        <input type="submit"--}}
+                                    {{--                                               hidden--}}
+                                    {{--                                               form="storeImage">--}}
+                                </div>
+                                {{--                                </form>--}}
                             </div>
                         </div>
 
@@ -94,7 +94,7 @@
                                 <h4>موجودی</h4>
                             </div>
                             <div class="card-body">
-                                {{--         Inventory fields here,  quantity sku and what not                   --}}
+                                @include('admin.products.partials.inventory')
                             </div>
                         </div>
 

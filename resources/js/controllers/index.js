@@ -17,6 +17,9 @@ Stimulus.register('flash', FlashController)
 import HelloController from './hello_controller'
 Stimulus.register('hello', HelloController)
 
+import InventoryController from './inventory_controller'
+Stimulus.register('inventory', InventoryController)
+
 import ObliterateController from './obliterate_controller'
 Stimulus.register('obliterate', ObliterateController)
 
