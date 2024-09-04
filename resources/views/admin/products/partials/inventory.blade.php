@@ -3,7 +3,6 @@
            for='sku'>بارکد</label>
 
     <input id='sku'
-           {{--           form="storeProduct"--}}
            type="text"
            name="sku"
            class="form-control"
@@ -45,9 +44,7 @@
     <label class="form-label"
            for='quantity'>تعداد</label>
 
-    <input
-        {{--        form="storeProduct"--}}
-        type="text"
+    <input type="text"
         name="quantity"
         id='quantity'
         class="form-control"

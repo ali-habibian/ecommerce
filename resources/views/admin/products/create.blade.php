@@ -63,7 +63,19 @@
                                 <h4>موجودی</h4>
                             </div>
                             <div class="card-body">
-                                @include('admin.products.partials.inventory')
+                                <div class="form-group"
+                                     data-inventory-target="quantity">
+                                    <label class="form-label"
+                                           for='quantity'>تعداد</label>
+
+                                    <input type="text"
+                                           name="quantity"
+                                           id='quantity'
+                                           placeholder="تعداد را وارد کنید..."
+                                           class="form-control"
+                                           value="{{ old('quantity') }}">
+                                    <span class="invalid-feedback" id="quantity-error"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -136,10 +148,6 @@
             formData.append('description', document.querySelector('#description').value);
             formData.append('price', document.querySelector('#price').value);
             formData.append('discounted_price', document.querySelector('#discounted_price').value);
-            formData.append('cost', document.querySelector('#cost').value);
-            formData.append('sku', document.querySelector('#sku').value);
-            formData.append('track_quantity', document.querySelector('input[name="track_quantity"]').checked);
-            formData.append('sell_out_of_stock', document.querySelector('input[name="sell_out_of_stock"]').checked);
             formData.append('quantity', document.querySelector('#quantity').value);
             formData.append('status', document.querySelector('select[name="status"]').value);
             formData.append('category_id', document.querySelector('#category_id').value);

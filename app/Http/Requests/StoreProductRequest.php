@@ -23,17 +23,8 @@ class StoreProductRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
-        $this->merge([
-            'track_quantity' =>
-                $this->has('track_quantity') &&
-                $this->input('track_quantity') == 'on',
-            'sell_out_of_stock' =>
-                $this->has('sell_out_of_stock') &&
-                $this->input('sell_out_of_stock') == 'on',
-        ]);
-
-        if ($this->input('quantity') === null){
-            $this->merge(['quantity' => 0]);
+        if ($this->input('discounted_price') === null) {
+            $this->merge(['discounted_price' => $this->input('price')]);
         }
     }
 
@@ -47,16 +38,39 @@ class StoreProductRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'sku' => 'nullable|string|unique:products,sku',
-            'track_quantity' => 'nullable|boolean',
-            'quantity' => 'required_if:track_quantity,true|nullable|int',
-            'sell_out_of_stock' => 'required_if:track_quantity,true|boolean',
+            'quantity' => 'required|int|min:1',
             'category_id' => 'required|int|exists:categories,id',
             'price' => 'required|numeric',
-            'cost' => 'nullable|numeric',
             'discounted_price' => 'nullable|numeric',
             'status' => 'required|string|in:active,draft,review',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'نام اجباری است.',
+            'name.string' => 'نام باید یک رشته باشد.',
+            'name.max' => 'نام نمی تواند بیشتر از 255 کاراکتر باشد.',
+            'description.required' => 'توضیحات اجباری است.',
+            'description.string' => 'توضیحات باید یک رشته باشد.',
+            'quantity.required' => 'تعداد اجباری است.',
+            'quantity.int' => 'تعداد باید یک عدد صحیح باشد.',
+            'quantity.min' => 'تعداد باید حداقل 1 باشد.',
+            'category_id.required' => 'دسته‌بندی اجباری است.',
+            'category_id.int' => 'دسته‌بندی باید یک عدد صحیح باشد.',
+            'category_id.exists' => 'دسته‌بندی نامعتبر است.',
+            'price.required' => 'قیمت اجباری است.',
+            'price.numeric' => 'قیمت باید یک عدد باشد.',
+            'discounted_price.numeric' => 'تخفیف‌ باید یک عدد باشد.',
+            'status.required' => 'وضعیت اجباری است.',
+            'status.string' => 'وضعیت باید یک رشته باشد.',
+            'status.in' => 'وضعیت باید یکی از active, draft, review باشد.',
+            'image.required' => 'تصویر اجباری است.',
+            'image.image' => 'تصویر باید یک فایل تصویری باشد.',
+            'image.mimes' => 'تصویر باید یکی از jpeg, png, jpg, gif باشد.',
+            'image.max' => 'حجم تصویر نمی تواند بیشتر از 2048 کیلوبایت باشد.',
         ];
     }
 }
