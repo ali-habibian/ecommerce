@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\UserController;
@@ -30,4 +31,10 @@ Route::prefix('admin')
         Route::resource('categories', CategoryController::class);
         Route::resource('brands', BrandController::class);
         Route::resource('products', ProductController::class);
+
+        // image routes
+        Route::post('/images', [ImageController::class, 'store'])->name('images.store');
+        Route::get('/images', [ImageController::class, 'show'])->name('images.show');
+        Route::delete('/images', [ImageController::class, 'destroy'])->name('images.destroy');
+        // end image routes
     });

@@ -41,7 +41,41 @@
                                 <h4>تصویر</h4>
                             </div>
                             <div class="card-body">
-                                {{--                            Media form fields here --}}
+{{--                                <form id="storeImage" action="{{ route('admin.products.store') }}"--}}
+{{--                                      method="post">--}}
+{{--                                    @csrf--}}
+                                    <div class="form-group"
+                                         data-controller="filepond"
+                                         data-filepond-process-value="{{ route('admin.images.store') }}"
+                                         data-filepond-restore-value="{{ route('admin.images.show') }}"
+                                         data-filepond-revert-value="{{ route('admin.images.destroy') }}"
+                                         data-filepond-current-value="{{ json_encode(old('images', [])) }}">
+
+                                        <input type="file" id="image"
+                                               data-filepond-target="input">
+                                        <span class="invalid-feedback" id="image-error"></span>
+
+                                        @foreach (old('images', []) as $image)
+                                            <input data-filepond-target="upload"
+                                                   type="hidden"
+                                                   name="images[]"
+{{--                                                   form="storeProduct"--}}
+                                                   value="{{ $image }}">
+                                        @endforeach
+
+                                        <template data-filepond-target="template">
+                                            <input data-filepond-target="upload"
+                                                   type="hidden"
+                                                   name="NAME"
+{{--                                                   form="storeProduct"--}}
+                                                   value="VALUE">
+                                        </template>
+
+{{--                                        <input type="submit"--}}
+{{--                                               hidden--}}
+{{--                                               form="storeImage">--}}
+                                    </div>
+{{--                                </form>--}}
                             </div>
                         </div>
 
@@ -50,7 +84,7 @@
                                 <h4>قیمت گذاری</h4>
                             </div>
                             <div class="card-body">
-                                {{--                            pricing form fields here --}}
+                                @include('admin.products.partials.pricing')
                             </div>
                         </div>
 
