@@ -41,41 +41,10 @@
                                 <h4>تصویر</h4>
                             </div>
                             <div class="card-body">
-                                {{--                                <form id="storeImage" action="{{ route('admin.products.store') }}"--}}
-                                {{--                                      method="post">--}}
-                                {{--                                    @csrf--}}
-                                <div class="form-group"
-                                     data-controller="filepond"
-                                     data-filepond-process-value="{{ route('admin.images.store') }}"
-                                     data-filepond-restore-value="{{ route('admin.images.show') }}"
-                                     data-filepond-revert-value="{{ route('admin.images.destroy') }}"
-                                     data-filepond-current-value="{{ json_encode(old('images', [])) }}">
-
-                                    <input type="file" id="image"
-                                           data-filepond-target="input">
+                                <div class="form-group">
+                                    <input type="file" name="image" id="image">
                                     <span class="invalid-feedback" id="image-error"></span>
-
-                                    @foreach (old('images', []) as $image)
-                                        <input data-filepond-target="upload"
-                                               type="hidden"
-                                               name="images[]"
-                                               {{--                                                   form="storeProduct"--}}
-                                               value="{{ $image }}">
-                                    @endforeach
-
-                                    <template data-filepond-target="template">
-                                        <input data-filepond-target="upload"
-                                               type="hidden"
-                                               name="NAME"
-                                               {{--                                                   form="storeProduct"--}}
-                                               value="VALUE">
-                                    </template>
-
-                                    {{--                                        <input type="submit"--}}
-                                    {{--                                               hidden--}}
-                                    {{--                                               form="storeImage">--}}
                                 </div>
-                                {{--                                </form>--}}
                             </div>
                         </div>
 
@@ -97,24 +66,6 @@
                                 @include('admin.products.partials.inventory')
                             </div>
                         </div>
-
-                        <div class="card rounded-lg">
-                            <div class="card-header">
-                                <h4>انواع</h4>
-                            </div>
-                            <div class="card-body">
-                                {{--             Product variation fields here, color and stuff              --}}
-                            </div>
-                        </div>
-
-                        <div class="card rounded-lg">
-                            <div class="card-header">
-                                <h4>سئو</h4>
-                            </div>
-                            <div class="card-body">
-                                {{--              SEO Fields here              --}}
-                            </div>
-                        </div>
                     </div>
                     <div class="col-12 col-md-5">
                         <div class="card rounded-lg">
@@ -122,16 +73,36 @@
                                 <h4>وضعیت محصول</h4>
                             </div>
                             <div class="card-body">
-                                {{--           product status fields here                --}}
+                                <div class="form-group">
+                                    <select name="status" class="form-select">
+                                        <option value="draft">پیش نویس</option>
+                                        <option value="review">در حال بررسی</option>
+                                        <option value="active">فعال</option>
+                                    </select>
+                                    <span class="invalid-feedback" id="status-error"></span>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card rounded-lg">
                             <div class="card-header">
-                                <h4>سازمان محصول</h4>
+                                <h4>دسته بندی محصول</h4>
                             </div>
                             <div class="card-body">
-                                {{-- product organization fields here, category, collections, tags, etc --}}
+                                <div class="form-group">
+                                    <label class="form-label" for='category_id'>دسته بندی</label>
+                                    <select name="category_id" id='category_id' class="form-select">
+                                        @foreach ($categories as $category)
+                                            @if ($category->id == old('category_id') || strtolower($category->name) == 'default')
+                                                <option selected
+                                                        value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @else
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    <span class="invalid-feedback" id="category_id-error"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -140,10 +111,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group text-right">
-                            <input type="submit"
-                                   class="btn btn-primary btn-lg"
-                                   value="Save"
-                                   form="storeProduct">
+                            <button id="submitButton" class="btn btn-primary btn-lg"
+                                    onclick="createProduct()">
+                                ایجاد محصول
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -152,3 +123,37 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        function createProduct() {
+            const url = '{{ route('admin.products.store') }}';
+            const method = 'POST';
+
+            // Initialize formData
+            const formData = new FormData();
+            formData.append('name', document.querySelector('#name').value);
+            formData.append('description', document.querySelector('#description').value);
+            formData.append('price', document.querySelector('#price').value);
+            formData.append('discounted_price', document.querySelector('#discounted_price').value);
+            formData.append('cost', document.querySelector('#cost').value);
+            formData.append('sku', document.querySelector('#sku').value);
+            formData.append('track_quantity', document.querySelector('input[name="track_quantity"]').checked);
+            formData.append('sell_out_of_stock', document.querySelector('input[name="sell_out_of_stock"]').checked);
+            formData.append('quantity', document.querySelector('#quantity').value);
+            formData.append('status', document.querySelector('select[name="status"]').value);
+            formData.append('category_id', document.querySelector('#category_id').value);
+
+            // Append the image file to the formData
+            const imageInput = document.getElementById('image');
+            if (imageInput.files.length > 0) {
+                formData.append('image', imageInput.files[0]);
+            }
+
+            const redirectUrl = '{{ route('admin.products.index') }}';
+
+            submitAjaxFormWithImage(url, method, formData, redirectUrl);
+        }
+    </script>
+@endpush
+

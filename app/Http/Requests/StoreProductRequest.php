@@ -31,6 +31,10 @@ class StoreProductRequest extends FormRequest
                 $this->has('sell_out_of_stock') &&
                 $this->input('sell_out_of_stock') == 'on',
         ]);
+
+        if ($this->input('quantity') === null){
+            $this->merge(['quantity' => 0]);
+        }
     }
 
     /**
@@ -52,8 +56,7 @@ class StoreProductRequest extends FormRequest
             'cost' => 'nullable|numeric',
             'discounted_price' => 'nullable|numeric',
             'status' => 'required|string|in:active,draft,review',
-            'images' => 'nullable|array',
-            'images.*' => 'string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
     }
 }

@@ -8,5 +8,6 @@ window.$ = jQuery;
 import Swal from "sweetalert2";
 window.Swal = Swal
 
-import { submitAjaxForm } from './formHelper';
+import { submitAjaxForm, submitAjaxFormWithImage } from './formHelper';
 window.submitAjaxForm = submitAjaxForm
+window.submitAjaxFormWithImage = submitAjaxFormWithImage

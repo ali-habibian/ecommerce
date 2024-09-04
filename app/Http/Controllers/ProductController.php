@@ -32,7 +32,28 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('storage/images/products'), $imageName);
+        $imagePath = 'images/products/' . $imageName;
+
+        Product::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'discounted_price' => $request->discounted_price,
+            'cost' => $request->cost,
+            'sku' => $request->sku,
+            'track_quantity' => $request->track_quantity ?? null,
+            'sell_out_of_stock' => $request->sell_out_of_stock ?? null,
+            'quantity' => $request->quantity,
+            'status' => $request->status,
+            'category_id' => $request->category_id,
+            'image' => $imagePath,
+        ]);
+
+        return response()->json([
+            'success' => 'محصول با موفقیت ایجاد شد'
+        ]);
     }
 
     /**

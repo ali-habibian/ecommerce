@@ -9,9 +9,7 @@
                 ريال
             </div>
 
-            <input
-{{--                form="storeProduct"--}}
-                   type="text"
+            <input type="number"
                    name="price"
                    id='price'
                    placeholder="قیمت را وارد کنید..."
@@ -31,9 +29,7 @@
                 ريال
             </div>
 
-            <input
-{{--                form="storeProduct"--}}
-                   type="text"
+            <input type="number"
                    name="discounted_price"
                    id='discounted_price'
                    placeholder="0"
@@ -54,9 +50,7 @@
             ريال
         </div>
 
-        <input
-{{--            form="storeProduct"--}}
-               type="text"
+        <input type="number"
                name="cost"
                id='cost'
                placeholder="0"
@@ -65,6 +59,6 @@
         <span class="invalid-feedback" id="cost-error"></span>
     </div>
 
-    <span class="text-sm text-secondary d-block mt-2">مشتریان این را نخواهند دید</span>
+    <span class="text-sm text-secondary d-block mt-2">مشتریان این مورد را نخواهند دید</span>
 
 </div>

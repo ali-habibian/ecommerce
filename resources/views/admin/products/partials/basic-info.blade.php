@@ -1,6 +1,5 @@
 <div class="form-group mb-3">
-    <label class="col-form-label"
-           for='name'>عنوان</label>
+    <label class="col-form-label" for='name'>عنوان</label>
     <input type="text"
            name="name"
            id='name'
@@ -10,8 +9,7 @@
 </div>
 
 <div class="form-group mb-3">
-    <label for='description'
-           class="col-form-label">
+    <label for='description' class="col-form-label">
         توضیحات
     </label>
 
