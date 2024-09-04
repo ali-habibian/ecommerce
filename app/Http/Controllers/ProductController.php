@@ -6,15 +6,23 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Http\Request;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $products = QueryBuilder::for(Product::class)
+            ->allowedFilters([AllowedFilter::scope('search', 'whereScout')])
+            ->paginate()
+            ->appends($request->query());
+
+        return view('admin.products.index', compact('products'));
     }
 
     /**

@@ -26,6 +26,12 @@
                     <i class="fas fa-hashtag"></i> <span>مدیریت برند ها</span>
                 </a>
             </li>
+            <li class="nav-item @if (Route::is('admin.products.*')) active @endif">
+                <a href="{{ route('admin.products.index') }}"
+                   class="nav-link">
+                    <i class="fas fa-shopping-basket"></i> <span>مدیریت محصولات</span>
+                </a>
+            </li>
             <li class="nav-item @if (Route::is('admin.users.*')) active @endif">
                 <a href="{{ route('admin.users.index') }}" class="nav-link">
                     <i class="fas fa-users"></i> <span>مدیریت کاربران</span>
