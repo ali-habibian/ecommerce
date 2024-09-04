@@ -66,7 +66,7 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        return view('admin.brands.edit', compact('brand'));
     }
 
     /**
@@ -74,7 +74,13 @@ class BrandController extends Controller
      */
     public function update(UpdateBrandRequest $request, Brand $brand)
     {
-        //
+        $validatedData = $request->validated();
+
+        $brand->update($validatedData);
+
+        return response()->json([
+            'success' => 'برند با موفقیت ویرایش شد.'
+        ]);
     }
 
     /**
