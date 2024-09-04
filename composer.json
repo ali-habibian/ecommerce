@@ -11,8 +11,11 @@
         "kasraghoreyshi/persian-faker": "^1.04",
         "laravel/fortify": "^1.24",
         "laravel/framework": "^11.9",
+        "laravel/scout": "^10.11",
         "laravel/tinker": "^2.9",
         "pishran/laravel-persian-slug": "^2.2",
+        "spatie/laravel-query-builder": "^6.0",
+        "tightenco/ziggy": "^2.3",
         "tonysm/stimulus-laravel": "^1.1",
         "tonysm/turbo-laravel": "^2.0"
     },

@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class CategoryController extends Controller
 {
@@ -29,7 +31,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::with('parent')->paginate(10);
+        $categories = QueryBuilder::for(Category::class)
+            ->allowedFilters([AllowedFilter::scope('search', 'whereScout')])
+            ->with('parent')
+            ->paginate(10)
+            ->appends(\request()->query());
 
         return view('admin.categories.index', compact('categories'));
     }
@@ -73,6 +79,7 @@ class CategoryController extends Controller
 
         return view('admin.categories.edit', compact('category', 'categories'));
     }
+
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         // Retrieve the validated input...

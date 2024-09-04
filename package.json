@@ -21,6 +21,7 @@
         "izitoast": "^1.4.0",
         "jquery": "^3.7.1",
         "sass": "^1.77.8",
+        "stimulus-use": "^0.52.2",
         "sweetalert2": "^11.12.4"
     }
 }

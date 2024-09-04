@@ -34,8 +34,12 @@
                                     <div class="d-flex">
                                         <input type="text"
                                                class="form-control w-full"
-                                               placeholder="جستجو">
-                                        <button class="btn btn-primary ms-1"><i class="fas fa-search"></i></button>
+                                               placeholder="جستجو"
+                                            {{ stimulus_controller('filter', [
+                                                'route' => 'admin.categories.index',
+                                                'filter' => 'search',
+                                            ]) }}
+                                            {{ stimulus_action('filter', 'change', 'input') }}>
                                     </div>
                                 </form>
                             </div>
@@ -43,42 +47,55 @@
                             <div class="clearfix mb-3"></div>
 
                             <div class="table-responsive">
-                                <table class="table table-borderless">
-                                    <tr>
-                                        <th>عنوان</th>
-                                        <th>توضیحات</th>
-                                        <th>دسته بندی والد</th>
-                                        <th>تاریخ ایجاد</th>
-                                    </tr>
-                                    @foreach ($categories as $category)
+                                <turbo-frame class='w-full'
+                                             id='categories'
+                                             target="_top"
+                                    {{ stimulus_controller('reload') }}
+                                    {{ stimulus_actions([
+                                        [
+                                            'reload' => ['filterChange', 'filter:change@document'],
+                                        ],
+                                        [
+                                            'reload' => ['sortChange', 'sort:change@document'],
+                                        ],
+                                    ]) }}>
+                                    <table class="table table-borderless">
                                         <tr>
-                                            <td
-                                                {{ stimulus_controller('obliterate', ['url' => route('admin.categories.destroy', $category)]) }}>
-                                                {{ Str::title($category->name) }}
-                                                <div class="table-links">
-                                                    <a class="btn text-primary"
-                                                       href="{{ route('admin.categories.edit', $category) }}">ویرایش</a>
-                                                    <div class="bullet"></div>
-                                                    <button {{ stimulus_action('obliterate', 'handle') }}
-                                                            class="btn text-danger">حذف</button>
-                                                    <form {{ stimulus_target('obliterate', 'form') }}
-                                                          method="POST"
-                                                          action="{{ route('admin.categories.destroy', $category) }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                {!! Str::limit($category->description, 90) !!}
-                                            </td>
-                                            <td>
-                                                {{ $category?->parent?->name }}
-                                            </td>
-                                            <td>{{ $category->created_at->diffForHumans() }}</td>
+                                            <th>عنوان</th>
+                                            <th>توضیحات</th>
+                                            <th>دسته بندی والد</th>
+                                            <th>تاریخ ایجاد</th>
                                         </tr>
-                                    @endforeach
-                                </table>
+                                        @foreach ($categories as $category)
+                                            <tr>
+                                                <td
+                                                    {{ stimulus_controller('obliterate', ['url' => route('admin.categories.destroy', $category)]) }}>
+                                                    {{ Str::title($category->name) }}
+                                                    <div class="table-links">
+                                                        <a class="btn text-primary"
+                                                           href="{{ route('admin.categories.edit', $category) }}">ویرایش</a>
+                                                        <div class="bullet"></div>
+                                                        <button {{ stimulus_action('obliterate', 'handle') }}
+                                                                class="btn text-danger">حذف</button>
+                                                        <form {{ stimulus_target('obliterate', 'form') }}
+                                                              method="POST"
+                                                              action="{{ route('admin.categories.destroy', $category) }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    {!! Str::limit($category->description, 90) !!}
+                                                </td>
+                                                <td>
+                                                    {{ $category?->parent?->name }}
+                                                </td>
+                                                <td>{{ $category->created_at->diffForHumans() }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                </turbo-frame>
                             </div>
                             <div class="float-right">
                                 <nav>

@@ -5,6 +5,9 @@
 import { Stimulus } from '../libs/stimulus'
 
 
+import FilterController from './filter_controller'
+Stimulus.register('filter', FilterController)
+
 import FlashController from './flash_controller'
 Stimulus.register('flash', FlashController)
 
@@ -13,3 +16,6 @@ Stimulus.register('hello', HelloController)
 
 import ObliterateController from './obliterate_controller'
 Stimulus.register('obliterate', ObliterateController)
+
+import ReloadController from './reload_controller'
+Stimulus.register('reload', ReloadController)
