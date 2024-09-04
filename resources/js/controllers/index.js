@@ -4,10 +4,6 @@
 
 import { Stimulus } from '../libs/stimulus'
 
-
-import FilepondController from './filepond_controller'
-Stimulus.register('filepond', FilepondController)
-
 import FilterController from './filter_controller'
 Stimulus.register('filter', FilterController)
 
