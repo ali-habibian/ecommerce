@@ -73,8 +73,7 @@
 
                                         @foreach ($products as $product)
                                             <tr>
-                                                <td data-controller="obliterate"
-                                                    data-obliterate-url-value="{{ route('admin.products.destroy', $product) }}">
+                                                <td>
                                                     {{ $product->name }}
                                                 </td>
                                                 <td>
@@ -93,13 +92,20 @@
                                                         <div class="badge badge-danger">پیشنویس</div>
                                                     @endif
                                                 </td>
-                                                <td>
+                                                <td
+                                                    {{ stimulus_controller('obliterate', ['url' => route('admin.products.destroy', $product)]) }}>
+
                                                     <div>
                                                         <a href='{{ route('admin.products.edit', $product) }}'
                                                            class='btn btn-primary'>ویرایش</a>
-                                                        <a data-turbo-method='delete'
-                                                           href='{{ route('admin.products.destroy', $product) }}'
-                                                           class='btn btn-danger'>حذف</a>
+                                                        <button {{ stimulus_action('obliterate', 'handle') }}
+                                                                class="btn btn-danger">حذف</button>
+                                                        <form {{ stimulus_target('obliterate', 'form') }}
+                                                              method="POST"
+                                                              action="{{ route('admin.products.destroy', $product) }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
                                                     </div>
                                                 </td>
                                             </tr>
