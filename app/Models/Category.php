@@ -50,6 +50,16 @@ class Category extends Model
     }
 
     /**
+     * The products that belong to this category
+     *
+     * @return HasMany
+     */
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    /**
      * Get the indexable data array for the model.
      *
      * @return array

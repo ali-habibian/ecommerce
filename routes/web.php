@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserPermissionController;
 use App\Http\Controllers\Admin\UserRoleController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,4 +29,5 @@ Route::prefix('admin')
             ->name('roles.permissions.assign');
         Route::resource('categories', CategoryController::class);
         Route::resource('brands', BrandController::class);
+        Route::resource('products', ProductController::class);
     });
