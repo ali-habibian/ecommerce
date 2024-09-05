@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -73,7 +74,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+
+        return view('admin.products.edit', compact('categories', 'product'));
     }
 
     /**
@@ -81,7 +84,34 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        if (is_null($request->image)) {
+            $imagePath = $product->image;
+        } else {
+            // delete previous image stored in 'storage/' . $product->image
+            if (file_exists(public_path('storage/' . $product->image))) {
+                File::delete(public_path('storage/' . $product->image));
+            }
+            // store new image
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('storage/images/products'), $imageName);
+            $imagePath = 'images/products/' . $imageName;
+        }
+
+        // update $product
+        $product->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'discounted_price' => $request->discounted_price,
+            'quantity' => $request->quantity,
+            'status' => $request->status,
+            'category_id' => $request->category_id,
+            'image' => $imagePath,
+        ]);
+
+        return response()->json([
+            'success' => 'محصول با موفقیت ویرایش شد'
+        ]);
     }
 
     /**

@@ -22,7 +22,7 @@
 
     <div class="form-group col-md-6">
         <label class="form-label"
-               for='discounted_price'>تخفیف</label>
+               for='discounted_price'>قیمت با تخفیف</label>
 
         <div class="input-group">
             <div class="input-group-text">
