@@ -119,6 +119,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        if (file_exists(public_path('storage/' . $product->image))) {
+            File::delete(public_path('storage/' . $product->image));
+        }
+
         $product->delete();
 
         return to_route('admin.products.index')->with(
