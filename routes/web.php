@@ -2,8 +2,6 @@
 
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\UserController;
@@ -20,7 +18,7 @@ Route::prefix('admin')
     ->middleware(['auth', 'role:super admin'])
     ->name('admin.')
     ->group(static function () {
-        Route::get('/', [HomeController::class, 'index'])->name('home.index');
+        Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home.index');
         Route::resource('users', UserController::class);
         Route::resource('roles', RoleController::class);
         Route::post('/user/{user}/roles', UserRoleController::class)->name('users.roles.assign');
@@ -34,5 +32,5 @@ Route::prefix('admin')
     });
 
 Route::group([], static function () {
-    Route::get('/', App\Http\Controllers\HomeController::class, 'index')->name('home.index');
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 });
