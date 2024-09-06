@@ -32,3 +32,7 @@ Route::prefix('admin')
         Route::resource('brands', BrandController::class);
         Route::resource('products', ProductController::class);
     });
+
+Route::group([], static function () {
+    Route::get('/', App\Http\Controllers\HomeController::class, 'index')->name('home.index');
+});
