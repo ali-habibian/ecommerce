@@ -20,19 +20,12 @@
 @include('home.components.header')
 {{-- Header End --}}
 
-{{-- Hero Banner --}}
-@include('home.components.hero-banner')
-{{-- Hero Banner End --}}
-
-{{-- why you should buy from us --}}
-@include('home.components.why-buy-from-us')
-{{-- why you should buy from us End --}}
-
-{{-- Featured Categories --}}
-@include('home.components.featured-categories')
-{{-- Featured Categories End --}}
+@yield('content')
 
 {{-- Footer --}}
 @include('home.components.footer')
 {{-- Footer End --}}
+
+@stack('scripts')
 </body>
+</html>
