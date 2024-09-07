@@ -6,7 +6,7 @@
 
         <div class="input-group">
             <div class="input-group-text">
-                ريال
+                تومان
             </div>
 
             <input type="number"
@@ -26,7 +26,7 @@
 
         <div class="input-group">
             <div class="input-group-text">
-                ريال
+                تومان
             </div>
 
             <input type="number"

@@ -20,7 +20,7 @@ class ProductController extends Controller
     {
         $products = QueryBuilder::for(Product::class)
             ->allowedFilters([AllowedFilter::scope('search', 'whereScout')])
-            ->paginate()
+            ->paginate(5)
             ->appends($request->query());
 
         return view('admin.products.index', compact('products'));

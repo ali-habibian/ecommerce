@@ -66,7 +66,6 @@
                                             <th>عنوان</th>
                                             <th>دسته بندی</th>
                                             <th>تعداد</th>
-                                            <th>ایجاد در</th>
                                             <th>وضعیت</th>
                                             <th>عملیات</th>
                                         </tr>
@@ -74,7 +73,7 @@
                                         @foreach ($products as $product)
                                             <tr>
                                                 <td>
-                                                    {{ $product->name }}
+                                                    {!! Str::limit($product->name, 40) !!}
                                                 </td>
                                                 <td>
                                                     {{ $product->category->name }}
@@ -82,7 +81,6 @@
                                                 <td>
                                                     {{ $product->quantity ?? 0 }} عدد باقی مانده
                                                 </td>
-                                                <td>{{ $product->created_at->diffForHumans() }}</td>
                                                 <td>
                                                     @if ($product->status == 'active')
                                                         <div class="badge badge-primary">فعال</div>

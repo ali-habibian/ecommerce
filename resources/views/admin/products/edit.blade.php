@@ -82,7 +82,7 @@
                                     <div class="form-group col-md-6">
                                         <label class="form-label" for='price'>قیمت</label>
                                         <div class="input-group">
-                                            <div class="input-group-text">ريال</div>
+                                            <div class="input-group-text">تومان</div>
                                             <input type="text"
                                                    name="price"
                                                    id='price'
@@ -96,7 +96,7 @@
                                     <div class="form-group col-md-6">
                                         <label class="form-label" for='discounted_price'>قیمت با تخفیف</label>
                                         <div class="input-group">
-                                            <div class="input-group-text">ريال</div>
+                                            <div class="input-group-text">تومان</div>
                                             <input type="text"
                                                    name="discounted_price"
                                                    id='discounted_price'

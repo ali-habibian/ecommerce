@@ -13,4 +13,7 @@
     @include('home.components.featured-categories')
     {{-- Featured Categories End --}}
 
+    {{-- Featured Products --}}
+    @include('home.components.featured-products')
+    {{-- Featured Products End --}}
 @endsection
