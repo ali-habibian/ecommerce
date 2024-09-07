@@ -61,22 +61,37 @@
                                     ]) }}>
                                     <table class="table table-borderless">
                                         <tr>
+                                            <th>تصویر</th>
                                             <th>عنوان</th>
                                             <th>توضیحات</th>
                                             <th>دسته بندی والد</th>
                                             <th>تاریخ ایجاد</th>
+                                            <th>عملیات</th>
                                         </tr>
                                         @foreach ($categories as $category)
                                             <tr>
-                                                <td
-                                                    {{ stimulus_controller('obliterate', ['url' => route('admin.categories.destroy', $category)]) }}>
-                                                    {{ Str::title($category->name) }}
-                                                    <div class="table-links">
-                                                        <a class="btn text-primary"
-                                                           href="{{ route('admin.categories.edit', $category) }}">ویرایش</a>
-                                                        <div class="bullet"></div>
+                                                <td>
+                                                    <img src="{{ asset('storage/' . $category->image) }}"
+                                                         width="60px"
+                                                         alt="{{ $category->name }}">
+                                                </td>
+                                                <td>
+                                                    {{ $category->name }}
+                                                </td>
+                                                <td>
+                                                    {!! Str::limit($category->description, 40) !!}
+                                                </td>
+                                                <td>
+                                                    {{ $category?->parent?->name }}
+                                                </td>
+                                                <td>{{ $category->created_at->diffForHumans() }}</td>
+                                                <td {{ stimulus_controller('obliterate', ['url' => route('admin.categories.destroy', $category)]) }}>
+                                                    <div>
+                                                        <a href="{{ route('admin.categories.edit', $category) }}"
+                                                           class='btn btn-primary'>ویرایش</a>
                                                         <button {{ stimulus_action('obliterate', 'handle') }}
-                                                                class="btn text-danger">حذف</button>
+                                                                class="btn btn-danger">حذف
+                                                        </button>
                                                         <form {{ stimulus_target('obliterate', 'form') }}
                                                               method="POST"
                                                               action="{{ route('admin.categories.destroy', $category) }}">
@@ -85,13 +100,6 @@
                                                         </form>
                                                     </div>
                                                 </td>
-                                                <td>
-                                                    {!! Str::limit($category->description, 90) !!}
-                                                </td>
-                                                <td>
-                                                    {{ $category?->parent?->name }}
-                                                </td>
-                                                <td>{{ $category->created_at->diffForHumans() }}</td>
                                             </tr>
                                         @endforeach
                                     </table>
