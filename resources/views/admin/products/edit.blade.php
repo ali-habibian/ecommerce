@@ -67,7 +67,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <input type="file" name="image" id="image">
+                                    <input class="form-control" type="file" name="image" id="image">
                                     <span class="invalid-feedback" id="image-error"></span>
                                 </div>
                             </div>

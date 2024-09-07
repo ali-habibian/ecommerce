@@ -63,6 +63,12 @@
                                 <span class="invalid-feedback" id="description-error"></span>
                             </div>
 
+                            <div class="form-group">
+                                <label class="form-label" for="image">تصویر</label>
+                                <input class="form-control" type="file" name="image" id="image">
+                                <span class="invalid-feedback" id="image-error"></span>
+                            </div>
+
                             <div class="form-group text-right">
                                 <button id="submitButton" class="btn btn-primary btn-lg"
                                         onclick="updateCategory()">
@@ -83,15 +89,29 @@
     <script>
         function updateCategory() {
             const url = '{{ route('admin.categories.update', $category) }}';
-            const method = 'PATCH';
-            const formData = {
-                parent_id: $('#parent_id').val(),
-                name: $('#name').val(),
-                description: $('#description').val(),
-            };
             const redirectUrl = '{{ route('admin.categories.index') }}';
 
-            submitAjaxForm(url, method, formData, redirectUrl);
+            const imageInput = document.getElementById('image');
+            if (imageInput.files.length > 0) {
+                const method = 'POST';
+                const formData = new FormData();
+                formData.append('_method', 'PATCH');
+                formData.append('name', document.querySelector('#name').value);
+                formData.append('description', document.querySelector('#description').value);
+                formData.append('parent_id', document.querySelector('#parent_id').value);
+                formData.append('image', imageInput.files[0]);
+
+                submitAjaxFormWithImage(url, method, formData, redirectUrl);
+            } else {
+                const method = 'PATCH';
+                const formData = {
+                    name: document.querySelector('#name').value,
+                    description: document.querySelector('#description').value,
+                    parent_id: document.querySelector('#parent_id').value,
+                    image: null
+                };
+                submitAjaxForm(url, method, formData, redirectUrl);
+            }
         }
 
     </script>

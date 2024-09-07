@@ -34,24 +34,26 @@ class UpdateCategoryRequest extends FormRequest
             ],
             'description' => 'sometimes|nullable|string',
             'parent_id' => 'sometimes|nullable|integer|exists:categories,id',
-        ];
-    }
-
-    public function attributes(): array
-    {
-        return [
-            'name' => 'عنوان',
-            'description' => 'توضیحات',
-            'parent_id' => 'دسته بندی والد',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'name.required' => 'عنوان را وارد کنید.',
-            'parent_id.required' => 'دسته بندی والد را انتخاب کنید.',
-            'parent_id.exists' => 'دسته بندی والد معتبر نمی‌باشد.',
+            'name.required' => 'وارد کردن عنوان دسته بندی الزامی است.',
+            'name.string' => 'عنوان دسته بندی باید یک رشته باشد.',
+            'name.max' => 'طول عنوان دسته بندی نباید بیشتر از 255 کاراکتر باشد.',
+            'name.unique' => 'عنوان دسته بندی تکراری است.',
+
+            'description.string' => 'توضیحات دسته بندی باید یک رشته باشد.',
+
+            'parent_id.integer' => 'دسته بندی والد باید یک عدد صحیح باشد.',
+            'parent_id.exists' => 'دسته بندی والد وارد شده معتبر نیست.',
+
+            'image.image' => 'تصویر وارد شده معتبر نیست.',
+            'image.mimes' => 'نوع فایل تصویر وارد شده معتبر نیست.',
+            'image.max' => 'سایز تصویر وارد شده نباید بیشتر از 2048 کیلو بایت باشد.',
         ];
     }
 }
