@@ -14,4 +14,11 @@ class ProductController extends Controller
 
         return view('home.products.index', compact('products', 'category'));
     }
+
+    public function show($product)
+    {
+        $product = Product::findBySlug($product);
+
+        return view('home.products.show-product', compact('product'));
+    }
 }

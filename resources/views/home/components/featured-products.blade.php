@@ -10,13 +10,17 @@
                              class="card-img-top p-2" style="object-fit: cover" height="200" alt="{{ $product->name }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>
-                            <p class="card-text">{!! Str::limit($product->description, 40) !!}</p>
+                            <p class="card-text">{!! Str::limit($product->description, 60) !!}</p>
                         </div>
-                        <div class="card-body">
-                            <a href="#"
-                               class="btn btn-secondary">
-                                خرید
-                            </a>
+                        <div class="card-body d-flex flex-column justify-content-end" style="height: 100%;">
+                            <div class="d-flex justify-content-between">
+                                <a href="{{ route('home.products.show', $product) }}" class="btn btn-outline-primary">
+                                    مشاهده
+                                </a>
+                                <a href="#" class="btn btn-outline-info">
+                                    خرید
+                                </a>
+                            </div>
                         </div>
                     </article>
                 </div>

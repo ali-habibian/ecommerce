@@ -34,4 +34,5 @@ Route::prefix('admin')
 Route::group([], static function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
     Route::get('{category}/products', [App\Http\Controllers\ProductController::class, 'index'])->name('home.category.products');
+    Route::get('products/{product}', [App\Http\Controllers\ProductController::class, 'show'])->name('home.products.show');
 });
