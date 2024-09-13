@@ -7,7 +7,7 @@
                 <div class="col-lg-3 col-md-4 mb-4 mb-md-0 shadow-dark">
                     <article class="card bg-discover h-100">
                         <img src="{{ asset('storage/' . $product->image) }}"
-                             class="card-img-top p-2" style="object-fit: cover" height="200">
+                             class="card-img-top p-2" style="object-fit: cover" height="200" alt="{{ $product->name }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>
                             <p class="card-text">{!! Str::limit($product->description, 40) !!}</p>

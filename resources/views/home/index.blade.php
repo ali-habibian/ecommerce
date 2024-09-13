@@ -1,5 +1,7 @@
 @extends('layouts.home')
 
+@section('title', 'خانه')
+
 @section('content')
     {{-- Hero Banner --}}
     @include('home.components.hero-banner')

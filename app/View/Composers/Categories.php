@@ -18,6 +18,7 @@ class Categories
         $categories = Category::with('children')
             ->whereNull('parent_id')
             ->withCount('products')
+            ->having('products_count', '>', 0) // Only categories with products
             ->get();
 
         $view->with('categories', $categories);

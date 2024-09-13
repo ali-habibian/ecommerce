@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 use Pishran\LaravelPersianSlug\HasPersianSlug;
 use Spatie\Sluggable\SlugOptions;
 
+/**
+ * @mixin Builder
+ */
 class Product extends Model
 {
     use HasFactory, HasPersianSlug, Searchable;
@@ -73,10 +75,5 @@ class Product extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
-    }
-
-    public function media(): HasMany
-    {
-        return $this->hasMany(Media::class);
     }
 }

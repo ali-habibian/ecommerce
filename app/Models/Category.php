@@ -11,6 +11,9 @@ use Laravel\Scout\Searchable;
 use Pishran\LaravelPersianSlug\HasPersianSlug;
 use Spatie\Sluggable\SlugOptions;
 
+/**
+ * @mixin Builder
+ */
 class Category extends Model
 {
     use HasFactory, HasPersianSlug, Searchable;

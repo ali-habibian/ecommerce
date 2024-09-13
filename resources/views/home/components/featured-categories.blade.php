@@ -13,7 +13,7 @@
                             <p class="card-text">{!! Str::limit($category->description, 40) !!}</p>
                         </div>
                         <div class="card-body">
-                            <a href="#"
+                            <a href="{{ route('home.category.products', $category) }}"
                                class="btn btn-secondary">
                                 مشاهده
                             </a>

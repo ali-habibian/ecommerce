@@ -2,12 +2,12 @@
 
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserPermissionController;
 use App\Http\Controllers\Admin\UserRoleController;
-use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,4 +33,5 @@ Route::prefix('admin')
 
 Route::group([], static function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+    Route::get('{category}/products', [App\Http\Controllers\ProductController::class, 'index'])->name('home.category.products');
 });
