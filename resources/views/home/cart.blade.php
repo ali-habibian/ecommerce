@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="mb-3"><a href="{{ route('home.index') }}" class="text-body"><i
-                                class="fas fa-long-arrow-alt-left ms-2"></i>ادامه خرید</a></h5>
+                                    class="fas fa-long-arrow-alt-left ms-2"></i>ادامه خرید</a></h5>
                 </div>
                 <div class="card-body p-4">
                     <div class="row">
@@ -25,13 +25,13 @@
                             </thead>
                             <tbody>
                             @foreach($cartItems as $cartItem)
-                                <tr>
+                                <tr data-cart-item-id="{{ $cartItem->id }}">
                                     <td class="text-center">
                                         <img
-                                            src="{{ asset('storage/' . $cartItem->product->image) }}"
-                                            class="img-fluid rounded-3"
-                                            alt="{{ $cartItem->product->name }}"
-                                            style="width: 65px;">
+                                                src="{{ asset('storage/' . $cartItem->product->image) }}"
+                                                class="img-fluid rounded-3"
+                                                alt="{{ $cartItem->product->name }}"
+                                                style="width: 65px;">
                                     </td>
                                     <td class="text-center">
                                         <a class="btn-link"
@@ -65,8 +65,11 @@
                                     <td class="text-center">
                                         {{ format_persian_price($cartItem->total_price) }}
                                     </td>
-                                    <td class="text-center"><a href="#" style="color: #ec5454;"><i
-                                                class="fas fa-trash-alt"></i></a></td>
+                                    <td class="text-center">
+                                        <a href="#" onclick="deleteItem({{ $cartItem->id }}); return false;" style="color: #ec5454;">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                             @endforeach
                             <tr>
@@ -156,6 +159,49 @@
                 .catch(error => {
                     alert('مشکلی به وجود آمده است، لطفا دوباره تلاش کنید.');
                 });
+        }
+
+        function deleteItem(id) {
+            let path = '{{ route('cart.remove-item', ':id') }}';
+            path = path.replace(':id', id);
+
+            if (confirm('آیا مطمئن هستید که می‌خواهید این محصول را از سبد خرید حذف کنید؟')) {
+                fetch(path, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Remove the item from the UI
+                            const row = document.querySelector(`tr[data-cart-item-id="${id}"]`);
+                            if (row) {
+                                row.remove();
+                            }
+
+                            // Update the cart total if it exists in the UI
+                            if (data.cartTotal) {
+                                const cartTotalElement = document.getElementById('totalCartPrice');
+                                if (cartTotalElement) {
+                                    cartTotalElement.innerHTML = data.cartTotal;
+                                }
+                            }
+
+                            // Show success message
+                            alert('محصول با موفقیت از سبد خرید حذف شد.');
+                        } else {
+                            // Show error message
+                            alert('خطا در حذف محصول از سبد خرید. لطفاً دوباره تلاش کنید.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('خطا در ارتباط با سرور. لطفاً دوباره تلاش کنید.');
+                    });
+            }
         }
     </script>
 @endpush

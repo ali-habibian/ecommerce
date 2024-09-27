@@ -47,9 +47,25 @@ class CartController extends Controller
         }
     }
 
-    public function removeCartItem(Request $request)
+    public function removeCartItem($id)
     {
-        // TODO - removeCartItem
+        try {
+            $cartItem = CartItem::findOrFail($id);
+            $cart = $cartItem->cart;
+
+            $cartItem->delete();
+            $cart->updateTotals();
+
+            return response()->json([
+                'success' => true,
+                'cartTotal' => format_persian_price($cart->total_price)
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'error' => 'حذف آیتم از سبد خرید با مشکل مواجه شد'
+            ], 500);
+        }
     }
 
     public function clearCart()
