@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Constants\CartStatusEnum;
 use App\Models\Cart;
+use App\Models\CartItem;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Client\Request;
@@ -51,16 +52,26 @@ class ProductController extends Controller
             $cart->save();
         }
 
-        $cart->cartItems()->create([
-            'product_id' => $product->id,
-            'quantity' => 1,
-            'total_price' => $product->price
-        ]);
+        $cartItem = CartItem::where('cart_id', $cart->id)
+            ->where('product_id', $product->id)
+            ->first();
 
+        if ($cartItem === null) {
+            $cart->cartItems()->create([
+                'product_id' => $product->id,
+                'quantity' => 1,
+                'total_price' => $product->price
+            ]);
+
+        } else {
+            $cartItem->quantity += 1;
+            $cartItem->total_price = $product->price * $cartItem->quantity;
+            $cartItem->save();
+        }
         $cart->total_price = $cart->total_price + $product->price;
         $cart->save();
 
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
+        return redirect()->back()->with('success', 'محصول به سبد خرید شما افزوده شد.');
     }
 
     public function removeCartItem(Request $request)

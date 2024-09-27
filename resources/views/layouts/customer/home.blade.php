@@ -45,6 +45,7 @@
 </head>
 
 <body>
+@include('layouts.admin.partials.flash')
 {{-- Header --}}
 @include('layouts.customer.partials.header')
 {{-- Header End --}}
