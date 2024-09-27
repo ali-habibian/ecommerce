@@ -44,7 +44,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [\App\Http\Controllers\HomeController::class, 'home'])->name('dashboard');
     Route::post('{product}/add-to-cart', [App\Http\Controllers\ProductController::class, 'addToCart'])->name('home.product.add.to.cart');
     Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('home.cart');
-    Route::post('/cart/update', [App\Http\Controllers\CartController::class, 'updateItem']);
+    Route::post('/cart/update', [App\Http\Controllers\CartController::class, 'updateItem'])->name('cart.update-item');
 });
 
 // Customer routes

@@ -26,6 +26,16 @@ class Cart extends Model
         return self::where('user_id', $userId);
     }
 
+    public function updateTotals(): void
+    {
+        $total = $this->cartItems->sum(function ($item) {
+            return $item->quantity * $item->product->price;
+        });
+
+        $this->total_price = $total;
+        $this->save();
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
