@@ -68,8 +68,20 @@ class CartController extends Controller
         }
     }
 
-    public function clearCart()
+    public function checkout()
     {
-        // TODO - clearCart
+        try {
+            $cart = auth()->user()->carts()->where('status', CartStatusEnum::Pending)->first();
+            if (!$cart) {
+                return redirect()->route('home.index')->with('success', 'سبد خرید شما خالی است.');
+            }
+
+            $cart->status = CartStatusEnum::Completed->value;
+            $cart->save();
+
+            return redirect()->route('home.index')->with('success', 'عملیات پرداخت با موفقیت انجام شد.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('success', 'مشکلی در فرایند پرداخت به وجود آمده است')->status(500);
+        }
     }
 }

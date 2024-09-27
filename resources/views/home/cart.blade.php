@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="mb-3"><a href="{{ route('home.index') }}" class="text-body"><i
-                                    class="fas fa-long-arrow-alt-left ms-2"></i>ادامه خرید</a></h5>
+                                class="fas fa-long-arrow-alt-left ms-2"></i>ادامه خرید</a></h5>
                 </div>
                 <div class="card-body p-4">
                     <div class="row">
@@ -28,10 +28,10 @@
                                 <tr data-cart-item-id="{{ $cartItem->id }}">
                                     <td class="text-center">
                                         <img
-                                                src="{{ asset('storage/' . $cartItem->product->image) }}"
-                                                class="img-fluid rounded-3"
-                                                alt="{{ $cartItem->product->name }}"
-                                                style="width: 65px;">
+                                            src="{{ asset('storage/' . $cartItem->product->image) }}"
+                                            class="img-fluid rounded-3"
+                                            alt="{{ $cartItem->product->name }}"
+                                            style="width: 65px;">
                                     </td>
                                     <td class="text-center">
                                         <a class="btn-link"
@@ -66,7 +66,8 @@
                                         {{ format_persian_price($cartItem->total_price) }}
                                     </td>
                                     <td class="text-center">
-                                        <a href="#" onclick="deleteItem({{ $cartItem->id }}); return false;" style="color: #ec5454;">
+                                        <a href="#" onclick="deleteItem({{ $cartItem->id }}); return false;"
+                                           style="color: #ec5454;">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
                                     </td>
@@ -74,8 +75,8 @@
                             @endforeach
                             <tr>
                                 <td class="text-center fs-5 fw-bold" colspan="2">مجموع</td>
-                                <td class="text-center fs-5 fw-bold" id="totalCartPrice"
-                                    colspan="4">{{ format_persian_price($cart->total_price) }} تومان
+                                <td class="text-center fs-5 fw-bold" id="totalCartPrice" colspan="4">
+                                    {{ format_persian_price($cart->total_price) }} تومان
                                 </td>
                             </tr>
                             </tbody>
@@ -83,7 +84,7 @@
                     </div>
 
                     <div class="card-footer text-center">
-                        <button id="pay_btn" class="btn btn-lg btn-primary">پرداخت</button>
+                        <a href="{{ route('cart.checkout') }}" class="btn btn-lg btn-primary">پرداخت</a>
                     </div>
                 </div>
             </div>

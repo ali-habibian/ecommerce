@@ -46,6 +46,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('home.cart');
     Route::post('/cart/update', [App\Http\Controllers\CartController::class, 'updateItem'])->name('cart.update-item');
     Route::delete('/cart/remove-item/{id}', [App\Http\Controllers\CartController::class, 'removeCartItem'])->name('cart.remove-item');
+    Route::get('/cart/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('cart.checkout');
 });
 
 // Customer routes
