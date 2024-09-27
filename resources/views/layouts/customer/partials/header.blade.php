@@ -32,6 +32,14 @@
                     <ul class="navbar-nav me-auto" id="login">
                         @if (Route::has('login'))
                             @auth
+                                <div class="widgets-wrap float-right ml-auto mt-0">
+                                    <div class="widget-header mr-3 ">
+                                        <a href="#" class="icon icon-sm rounded-circle border">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </a>
+                                        <span class="badge badge-pill badge-danger notify">{{ auth()->user()->cartItemCount() }}</span>
+                                    </div>
+                                </div> <!-- widgets-wrap.// -->
                                 <li class="nav-item m-1">
                                     <a href="{{ route('dashboard') }}" class="nav-link">داشبورد</a>
                                 </li>
