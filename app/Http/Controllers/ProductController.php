@@ -26,14 +26,8 @@ class ProductController extends Controller
         return view('home.products.show-product', compact('product'));
     }
 
-    public function showCartTable()
-    {
-        // TODO - showCartTable
-    }
-
     public function addToCart($product)
     {
-        // TODO change to act general
         $product = Product::findBySlug($product);
         if (!$product) {
             abort(404);
@@ -72,15 +66,5 @@ class ProductController extends Controller
         $cart->save();
 
         return redirect()->back()->with('success', 'محصول به سبد خرید شما افزوده شد.');
-    }
-
-    public function removeCartItem(Request $request)
-    {
-        // TODO - removeCartItem
-    }
-
-    public function clearCart()
-    {
-        // TODO - clearCart
     }
 }
