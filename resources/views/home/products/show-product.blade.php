@@ -13,7 +13,12 @@
                 <h1 class="pt-2">{{ $product->name }}</h1>
                 <p class="text-muted pt-3">{{ $product->description }}</p>
                 <h3 class="pt-4">{{ number_format((int)$product->price, 0, '.', ',') }} تومان</h3>
-                <button class="btn btn-primary mt-4">افزودن به سبد خرید</button>
+                <form action="{{ route('home.product.add.to.cart', $product) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-primary mt-4">
+                        افزودن به سبد خرید
+                    </button>
+                </form>
             </div>
         </div>
     </main>
