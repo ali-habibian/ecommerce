@@ -22,7 +22,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('layouts.home', Categories::class);
+        View::composer('layouts.customer.home', Categories::class);
         View::composer('home.index', Categories::class);
         View::composer('home.index', Products::class);
     }
