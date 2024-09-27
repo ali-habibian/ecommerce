@@ -46,13 +46,13 @@
 
 <body>
 {{-- Header --}}
-@include('home.components.header')
+@include('layouts.customer.partials.header')
 {{-- Header End --}}
 
 @yield('content')
 
 {{-- Footer --}}
-@include('home.components.footer')
+@include('layouts.customer.partials.footer')
 {{-- Footer End --}}
 
 @stack('scripts')

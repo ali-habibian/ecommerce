@@ -33,7 +33,7 @@
                         @if (Route::has('login'))
                             @auth
                                 <li class="nav-item m-1">
-                                    <a href="{{ route('user-redirect') }}" class="nav-link">داشبورد</a>
+                                    <a href="{{ route('dashboard') }}" class="nav-link">داشبورد</a>
                                 </li>
                                 <li class="nav-item m-1">
                                     <form method="POST" action="{{ route('logout') }}">

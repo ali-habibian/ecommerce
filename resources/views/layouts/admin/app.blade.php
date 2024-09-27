@@ -19,18 +19,18 @@
 <body>
 <div id="app">
     <div class="main-wrapper">
-        @include('layouts.partials.flash')
+        @include('layouts.admin.partials.flash')
         <div class="navbar-bg"></div>
 
-        @include('layouts.partials.navbar')
+        @include('layouts.admin.partials.navbar')
 
-        @include('layouts.partials.sidebar')
+        @include('layouts.admin.partials.sidebar')
 
         <div class="main-content">
             @yield('content')
         </div>
 
-        @include('layouts.partials.footer')
+        @include('layouts.admin.partials.footer')
     </div>
 </div>
 @stack('modals')

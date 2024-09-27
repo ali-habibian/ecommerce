@@ -31,8 +31,25 @@ Route::prefix('admin')
         Route::resource('products', ProductController::class);
     });
 
+// General routes
 Route::group([], static function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
     Route::get('{category}/products', [App\Http\Controllers\ProductController::class, 'index'])->name('home.category.products');
     Route::get('products/{product}', [App\Http\Controllers\ProductController::class, 'show'])->name('home.products.show');
+});
+
+// Customer and Admin shared routes
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/home', [\App\Http\Controllers\HomeController::class, 'home'])->name('dashboard');
+    Route::post('{product}/add-to-cart', [App\Http\Controllers\ProductController::class, 'addToCart'])->name('home.product.add.to.cart');
+});
+
+// Customer routes
+Route::group(['middleware' => 'auth', 'role: customer'], static function () {
+
+//    Route::get('cart', [App\Http\Controllers\CartController::class, 'show'])->name('home.cart.show');
+//    Route::post('cart', [App\Http\Controllers\CartController::class, 'update'])->name('home.cart.update');
+//    Route::get('cart/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('home.cart.checkout');
+//    Route::post('cart/checkout', [App\Http\Controllers\CartController::class, 'placeOrder'])->name('home.cart.place.order');
 });

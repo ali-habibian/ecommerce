@@ -17,6 +17,8 @@ class Product extends Model
 {
     use HasFactory, HasPersianSlug, Searchable;
 
+    protected $table = 'products';
+
     /**
      * The attributes that should not be mass assignable
      *

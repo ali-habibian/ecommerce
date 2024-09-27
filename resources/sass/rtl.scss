@@ -67,7 +67,7 @@
 
 body, html {
   direction: rtl;
-  font-family: Vazir, Tahoma, Arial;
+    font-family: Vazir, Tahoma, Arial, serif;
 }
 
 .ltr {
@@ -79,7 +79,7 @@ body, html {
 }
 
 h1, h2, h3, h4, h5, h6, p, a, span, input, textarea, select, option, label {
-  font-family: Vazir, Tahoma, Arial;
+    font-family: Vazir, Tahoma, Arial, serif;
 }
 
 .main-sidebar {
@@ -100,7 +100,7 @@ h1, h2, h3, h4, h5, h6, p, a, span, input, textarea, select, option, label {
 }
 
 .navbar-expand-lg .navbar-nav {
-  padding-right: 0px;
+  padding-right: 0;
 }
 
 body.sidebar-mini .main-sidebar:after {
@@ -313,7 +313,7 @@ body.sidebar-gone {
 
 .form-group label {
   font-weight: normal;
-  font-family: Vazir, Tahoma, Arial;
+    font-family: Vazir, Tahoma, Arial, serif;
   letter-spacing: 0;
 }
 
@@ -331,7 +331,7 @@ body.sidebar-gone {
 .card {
   &.card-sm-3 .card-header h4, &.card-sm-4 .card-header h4 {
     letter-spacing: 0;
-    font-family: Vazir, Tahoma, Arial;
+      font-family: Vazir, Tahoma, Arial, serif;
   }
 }
 
@@ -341,7 +341,7 @@ body.sidebar-gone {
 }
 
 .main-footer {
-  font-family: Vazir, Tahoma, Arial;
+    font-family: Vazir, Tahoma, Arial, serif;
   padding: 20px 280px 20px 30px;
   font-size: 90%;
   border-top: solid 1px #EEE;

@@ -9,7 +9,22 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Cart extends Model
 {
-    protected $guarded = [];
+//    /**
+//     * @var int|mixed
+//     */
+//    public mixed $user_id;
+//    /**
+//     * @var mixed|string
+//     */
+//    public mixed $status;
+//    public mixed $total_price;
+    protected $fillable = ['user_id', 'status', 'total_price'];
+    protected $table = 'cart';
+
+    public static function whereUserId(int $userId): Cart
+    {
+        return self::where('user_id', $userId);
+    }
 
     public function user(): BelongsTo
     {
@@ -19,5 +34,10 @@ class Cart extends Model
     public function cartItems(): HasMany
     {
         return $this->hasMany(CartItem::class);
+    }
+
+    public function whereStatus(string $value): Cart
+    {
+        return $this->where('status', $value);
     }
 }

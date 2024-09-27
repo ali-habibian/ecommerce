@@ -1,4 +1,4 @@
-@extends('layouts.home')
+@extends('layouts.customer.home')
 
 @section('title', $category->name)
 
@@ -12,14 +12,16 @@
                     <div class="col-lg-3 col-md-4 mb-4 mb-md-0 shadow-dark">
                         <article class="card bg-discover h-100">
                             <img src="{{ asset('storage/' . $product->image) }}"
-                                 class="card-img-top p-2" style="object-fit: cover" height="200" alt="{{ $product->name }}">
+                                 class="card-img-top p-2" style="object-fit: cover" height="200"
+                                 alt="{{ $product->name }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $product->name }}</h5>
                                 <p class="card-text">{!! Str::limit($product->description, 60) !!}</p>
                             </div>
                             <div class="card-body d-flex flex-column justify-content-end" style="height: 100%;">
                                 <div class="d-flex justify-content-between">
-                                    <a href="{{ route('home.products.show', $product) }}" class="btn btn-outline-primary">
+                                    <a href="{{ route('home.products.show', $product) }}"
+                                       class="btn btn-outline-primary">
                                         مشاهده
                                     </a>
                                     <a href="#" class="btn btn-outline-info">

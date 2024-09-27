@@ -1,7 +1,7 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand text-start px-3">
-            <a href="{{ route('admin.home.index') }}">دیجی ارومیه</a>
+            <a href="{{ route('home.index') }}">دیجی ارومیه</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm px-2 text-start">
             <a href="{{ route('admin.home.index') }}">Du</a>

@@ -17,9 +17,13 @@
                                 <a href="{{ route('home.products.show', $product) }}" class="btn btn-outline-primary">
                                     مشاهده
                                 </a>
-                                <a href="#" class="btn btn-outline-info">
-                                    خرید
-                                </a>
+                                <form action="{{ route('home.product.add.to.cart', $product) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-outline-info">
+                                        خرید
+                                    </button>
+                                </form>
+
                             </div>
                         </div>
                     </article>

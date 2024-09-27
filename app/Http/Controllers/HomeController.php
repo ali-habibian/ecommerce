@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public function home()
+    {
+        if (auth()->user()->hasRole('super admin')) {
+            return view('admin.home.index');
+        }
+
+        return view('home.index');
+    }
+
     /**
      * Display the application home page.
      *
