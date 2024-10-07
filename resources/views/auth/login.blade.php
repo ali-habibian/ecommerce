@@ -28,7 +28,7 @@
                                    autofocus>
                             @error('email')
                             <div class="invalid-feedback">
-                                لطفا ایمیل خود را وارد کنید
+                                {{ $message }}
                             </div>
                             @enderror
                         </div>
@@ -46,7 +46,7 @@
                                    required>
                             @error('password')
                             <div class="invalid-feedback">
-                                لطفا رمز عبور خود را وارد کنید
+                                {{ $message }}
                             </div>
                             @enderror
                         </div>
