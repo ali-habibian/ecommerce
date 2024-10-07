@@ -40,9 +40,11 @@
                                         <span class="badge badge-pill badge-danger notify">{{ auth()->user()->cartItemCount() }}</span>
                                     </div>
                                 </div> <!-- widgets-wrap.// -->
+                            @if(auth()->user()->hasRole('super admin'))
                                 <li class="nav-item m-1">
                                     <a href="{{ route('dashboard') }}" class="nav-link">داشبورد</a>
                                 </li>
+                                @endif
                                 <li class="nav-item m-1">
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
