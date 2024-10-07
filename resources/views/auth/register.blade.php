@@ -21,21 +21,23 @@
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="name">نام و نام خانوادگی</label>
-                                <input id="name" type="text" class="form-control" name="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                       name="name" value="{{ old('name') }}" autofocus>
                                 @error('name')
                                 <div class="invalid-feedback">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                                 @enderror
                             </div>
 
                             <div class="form-group col-6">
                                 <label for="email">ایمیل</label>
-                                <input id="email" type="email" class="form-control" name="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                       name="email" value="{{ old('email') }}">
                                 @error('email')
-                                    <div class="invalid-feedback">
-                                        {{$message}}
-                                    </div>
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
                                 @enderror
                             </div>
                         </div>
@@ -44,38 +46,51 @@
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="password" class="d-block">رمز عبور</label>
-                                <input id="password" type="password" class="form-control pwstrength"
-                                       data-indicator="pwindicator" name="password">
-                                <div id="pwindicator" class="pwindicator">
-                                    <div class="bar"></div>
-                                    <div class="label"></div>
-                                </div>
+                                <input id="password" type="password"
+                                       class="form-control @error('password') is-invalid @enderror"
+                                       name="password">
                                 @error('password')
                                 <div class="invalid-feedback">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                                 @enderror
                             </div>
+
                             <div class="form-group col-6">
                                 <label for="password_confirmation" class="d-block">تایید رمز عبور</label>
-                                <input id="password_confirmation" type="password" class="form-control" name="password_confirmation">
+                                <input id="password_confirmation" type="password" class="form-control"
+                                       name="password_confirmation">
+                                @error('password_confirmation')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
-                            @error('password_confirmation')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                            @enderror
                         </div>
 
                         <div class="row">
                             <div class="form-group col-6">
-                                <label>آدرس</label>
-                                <input type="text" class="form-control">
+                                <label for="address" class="d-block">آدرس</label>
+                                <input id="address" name="address" type="text"
+                                       class="form-control @error('address') is-invalid @enderror"
+                                       value="{{ old('address') }}">
+                                @error('address')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
 
                             <div class="form-group col-6">
-                                <label>موبایل</label>
-                                <input type="tel" class="form-control">
+                                <label for="telephone" class="d-block">موبایل</label>
+                                <input id="telephone" name="telephone" type="text"
+                                       class="form-control @error('telephone') is-invalid @enderror"
+                                       value="{{ old('telephone') }}">
+                                @error('telephone')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                         </div>
 
