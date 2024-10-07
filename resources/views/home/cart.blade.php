@@ -84,6 +84,10 @@
                     </div>
 
                     <div class="card-footer text-center">
+                        <div class="input-group p-2 mb-2">
+                            <span class="input-group-text">آدرس</span>
+                            <textarea class="form-control" aria-label="address">{{ auth()->user()->address }}</textarea>
+                        </div>
                         <a href="{{ route('cart.checkout') }}" class="btn btn-lg btn-primary">پرداخت</a>
                     </div>
                 </div>
